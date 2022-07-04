@@ -32,15 +32,15 @@ describe('tasks route', () => {
         Task.findAll.restore();
       });
 
-      it('should return status 200', async () => {
+      it('should return status 200', () => {
         expect(response).to.have.status(200);
       });
 
-      it('should return a json response', async () => {
+      it('should return a json response', () => {
         expect(response).to.be.json;
       });
 
-      it('should return all the tasks without ordenation', async () => {
+      it('should return all the tasks without ordenation', () => {
         expect(response.body).to.deep.equal(UNORDERED_TASKS);
       });
     });
@@ -59,15 +59,15 @@ describe('tasks route', () => {
           Task.findAll.restore();
         });
   
-        it('should return status 200', async () => {
+        it('should return status 200', () => {
           expect(response).to.have.status(200);
         });
   
-        it('should return a json response', async () => {
+        it('should return a json response', () => {
           expect(response).to.be.json;
         });
   
-        it('should return all the tasks in ascending name order', async () => {
+        it('should return all the tasks in ascending name order', () => {
           expect(response.body).to.deep.equal(ORDERED_TASKS_BY_NAME_ASC);
         });
       });
@@ -86,15 +86,15 @@ describe('tasks route', () => {
             Task.findAll.restore();
           });
     
-          it('should return status 200', async () => {
+          it('should return status 200', () => {
             expect(response).to.have.status(200);
           });
     
-          it('should return a json response', async () => {
+          it('should return a json response', () => {
             expect(response).to.be.json;
           });
     
-          it('should return all the tasks in ascending status order', async () => {
+          it('should return all the tasks in ascending status order', () => {
             expect(response.body).to.deep.equal(ORDERED_TASKS_BY_STATUS_ASC);
           });
         });
@@ -112,15 +112,15 @@ describe('tasks route', () => {
             Task.findAll.restore();
           });
     
-          it('should return status 200', async () => {
+          it('should return status 200', () => {
             expect(response).to.have.status(200);
           });
     
-          it('should return a json response', async () => {
+          it('should return a json response', () => {
             expect(response).to.be.json;
           });
     
-          it('should return all the tasks in descending createdAt order', async () => {
+          it('should return all the tasks in descending createdAt order', () => {
             expect(response.body).to.deep.equal(ORDERED_TASKS_BY_DATE_DESC);
           });
         });
@@ -149,15 +149,15 @@ describe('tasks route', () => {
         Task.update.restore();
       });
 
-      it('should return status 200', async () => {
+      it('should return status 200', () => {
         expect(response).to.have.status(200);
       });
 
-      it('should return a json response', async () => {
+      it('should return a json response', () => {
         expect(response).to.be.json;
       });
 
-      it('should return an object with the message "Task succesfully updated"', async () => {
+      it('should return an object with the message "Task succesfully updated"', () => {
         expect(response.body).to.have.own.property('message', 'Task succesfully updated');
       });
     });
@@ -180,15 +180,15 @@ describe('tasks route', () => {
         Task.findByPk.restore();
       });
 
-      it('should return status 404', async () => {
+      it('should return status 404', () => {
         expect(response).to.have.status(404);
       });
 
-      it('should return a json response', async () => {
+      it('should return a json response', () => {
         expect(response).to.be.json;
       });
 
-      it('should return an object with the message "Task not found"', async () => {
+      it('should return an object with the message "Task not found"', () => {
         expect(response.body).to.have.own.property('message', 'Task not found');
       });
     });
@@ -211,11 +211,11 @@ describe('tasks route', () => {
         Task.destroy.restore();
       });
 
-      it('should return status 204', async () => {
+      it('should return status 204', () => {
         expect(response).to.have.status(204);
       });
 
-      it('should return an empty body response', async () => {
+      it('should return an empty body response', () => {
         expect(response.body).to.be.empty;
       });
     });
@@ -234,15 +234,15 @@ describe('tasks route', () => {
         Task.findByPk.restore();
       });
 
-      it('should return status 404', async () => {
+      it('should return status 404', () => {
         expect(response).to.have.status(404);
       });
 
-      it('should return a json response', async () => {
+      it('should return a json response', () => {
         expect(response).to.be.json;
       });
 
-      it('should return an object with the message "Task not found"', async () => {
+      it('should return an object with the message "Task not found"', () => {
         expect(response.body).to.have.own.property('message', 'Task not found');
       });
     });
