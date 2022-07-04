@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "test": "mocha src/tests/*/*.test.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "coverage": "nyc npm run test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0",
     "nodemon": "^2.0.18",
-    "sequelize-cli": "^6.4.1"
+    "nyc": "^15.1.0",
+    "sequelize-cli": "^6.4.1",
+    "sinon": "^14.0.0"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
