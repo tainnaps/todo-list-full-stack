@@ -247,4 +247,128 @@ describe('tasks route', () => {
       });
     });
   });
+
+  describe('when making a POST request to /tasks', () => {
+    describe('sending new task\'s name and status', () => {
+      describe('with valid values', () => {
+        before(async () => {
+          sinon.stub(Task, 'create').resolves(FIFTH_TASK);
+    
+          response = await chai.request(app)
+            .post('/tasks')
+            .send({
+              name: FIFTH_TASK.name,
+              status: FIFTH_TASK.status,
+            });
+        });
+    
+        after(() => {
+          Task.create.restore();
+        });
+  
+        it('should return status 201', () => {
+          expect(response).to.have.status(201);
+        });
+  
+        it('should return a json response', () => {
+          expect(response).to.be.json;
+        });
+  
+        it('should return the created task', () => {
+          expect(response.body).to.deep.equal(FIFTH_TASK);
+        });
+      });
+
+      describe('with status value different of "pendente", "pronto" or "em andamento"', () => {
+        before(async () => {
+          response = await chai.request(app)
+            .post('/tasks')
+            .send({
+              name: FIFTH_TASK.name,
+              status: 'status invalid value',
+            });
+        });
+
+        it('should return status 400', () => {
+          expect(response).to.have.status(400);
+        });
+  
+        it('should return a json response', () => {
+          expect(response).to.be.json;
+        });
+  
+        it('should return an object with the message "\"status\" must be one of [pendente, em andamento, pronto]"', () => {
+          expect(response.body).to.have.own.property('message', '\"status\" must be one of [pendente, em andamento, pronto]');
+        });
+      });
+
+      describe('with empty name', () => {
+        before(async () => {
+          response = await chai.request(app)
+            .post('/tasks')
+            .send({
+              name: '',
+              status: FIFTH_TASK.status,
+            });
+        });
+
+        it('should return status 400', () => {
+          expect(response).to.have.status(400);
+        });
+  
+        it('should return a json response', () => {
+          expect(response).to.be.json;
+        });
+  
+        it('should return an object with the message "\"name\" is not allowed to be empty"', () => {
+          expect(response.body).to.have.own.property('message', '\"name\" is not allowed to be empty');
+        });
+      });
+    });
+
+    describe('sending only new task\'s name', () => {
+      before(async () => {
+        response = await chai.request(app)
+          .post('/tasks')
+          .send({
+            name: FIFTH_TASK.name,
+          });
+      });
+  
+      it('should return status 400', () => {
+        expect(response).to.have.status(400);
+      });
+
+      it('should return a json response', () => {
+        expect(response).to.be.json;
+      });
+
+      it('should return an object with the message "\"status\" is required"', () => {
+        expect(response.body).to.have.own.property('message', '\"status\" is required');
+      });
+    });
+
+    describe('sending only new task\'s status', () => {
+      before(async () => {
+        response = await chai.request(app)
+          .post('/tasks')
+          .send({
+            status: FIFTH_TASK.status,
+          });
+      });
+  
+      it('should return status 400', () => {
+        expect(response).to.have.status(400);
+      });
+
+      it('should return a json response', () => {
+        expect(response).to.be.json;
+      });
+
+      it('should return an object with the message "\"name\" is required"', () => {
+        expect(response.body).to.have.own.property('message', '\"name\" is required');
+      });
+    });
+  });
+
 });
