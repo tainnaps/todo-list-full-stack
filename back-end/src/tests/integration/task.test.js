@@ -371,4 +371,28 @@ describe('tasks route', () => {
     });
   });
 
+  describe('when an unexpected error happens', () => {
+    before(async () => {
+      sinon.stub(Task, 'findAll').rejects();
+
+      response = await chai.request(app)
+        .get('/tasks');
+    });
+
+    after(() => {
+      Task.findAll.restore();
+    });
+
+    it('should return status 500', () => {
+      expect(response).to.have.status(500);
+    });
+
+    it('should return a json response', () => {
+      expect(response).to.be.json;
+    });
+
+    it('should return an object with the message "Internal server error', () => {
+      expect(response.body).to.have.own.property('message', 'Internal server error');
+    });
+  });
 });
