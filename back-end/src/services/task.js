@@ -10,6 +10,14 @@ const getAll = async (orderBy, direction) => {
   return tasks;
 };
 
+const create = async (taskData) => {
+  const createdAt = new Date();
+
+  const newTask = await Task.create({ ...taskData, createdAt });
+
+  return newTask;
+};
 module.exports = {
   getAll,
+  create,
 };

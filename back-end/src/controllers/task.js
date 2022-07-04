@@ -12,6 +12,18 @@ const getAll = async (req, res, next) => {
   }
 };
 
+const create = async (req, res, next) => {
+  try {
+    const { name, status } = req.body;
+
+    const newTask = await TaskService.create({ name, status });
+
+    res.status(201).json(newTask);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   getAll,
+  create,
 };
