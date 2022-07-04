@@ -8,6 +8,8 @@ const {
   ORDERED_TASKS_BY_NAME_ASC,
   ORDERED_TASKS_BY_STATUS_ASC,
   ORDERED_TASKS_BY_DATE_DESC,
+  FIFTH_TASK,
+  UPDATED_FIFTH_TASK,
 } = require('../mocks');
 
 const { expect } = chai;
@@ -126,4 +128,69 @@ describe('tasks route', () => {
     });
   });
 
+  describe('when making a PUT request to /tasks/:id', () => {
+    describe('and finding the task to update', () => {
+      const existingTaskId = 5;
+  
+      before(async () => {
+        sinon.stub(Task, 'findByPk').resolves(FIFTH_TASK);
+        sinon.stub(Task, 'update').resolves();
+  
+        response = await chai.request(app)
+          .put(`/tasks/${existingTaskId}`)
+          .send({
+            name: UPDATED_FIFTH_TASK.name,
+            status: UPDATED_FIFTH_TASK.status,
+          });
+      });
+  
+      after(() => {
+        Task.findByPk.restore();
+        Task.update.restore();
+      });
+
+      it('should return status 200', async () => {
+        expect(response).to.have.status(200);
+      });
+
+      it('should return a json response', async () => {
+        expect(response).to.be.json;
+      });
+
+      it('should return an object with the message "Task succesfully updated"', async () => {
+        expect(response.body).to.have.own.property('message', 'Task succesfully updated');
+      });
+    });
+
+    describe('and not finding the task to update', () => {
+      const notExistingTaskId = 100;
+  
+      before(async () => {
+        sinon.stub(Task, 'findByPk').resolves(null);
+  
+        response = await chai.request(app)
+          .put(`/tasks/${notExistingTaskId}`)
+          .send({
+            name: UPDATED_FIFTH_TASK.name,
+            status: UPDATED_FIFTH_TASK.status,
+          });
+      });
+  
+      after(() => {
+        Task.findByPk.restore();
+      });
+
+      it('should return status 404', async () => {
+        expect(response).to.have.status(404);
+      });
+
+      it('should return a json response', async () => {
+        expect(response).to.be.json;
+      });
+
+      it('should return an object with the message "Task not found"', async () => {
+        expect(response.body).to.have.own.property('message', 'Task not found');
+      });
+    });
+  });
 });
