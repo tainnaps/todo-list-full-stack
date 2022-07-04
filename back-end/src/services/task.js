@@ -31,15 +31,15 @@ const create = async (taskData) => {
 };
 
 const update = async (taskId, taskData) => {
-  const foundTask = await getById(taskId);
+  await getById(taskId);
 
-  await foundTask.update(taskData);
+  await Task.update(taskData, { where: { id: taskId } });
 };
 
 const remove = async (taskId) => {
-  const foundTask = await getById(taskId);
+  await getById(taskId);
 
-  await foundTask.destroy();
+  await Task.destroy({ where: { id: taskId } });
 };
 
 module.exports = {
