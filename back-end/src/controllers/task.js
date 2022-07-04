@@ -1,4 +1,4 @@
-const TaskService = require('../services/task');
+const { TaskService } = require('../services');
 
 const getAll = async (req, res, next) => {
   try {
@@ -23,7 +23,21 @@ const create = async (req, res, next) => {
     next(error);
   }
 };
+
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, status } = req.body;
+
+    await TaskService.update(id, { name, status });
+
+    res.status(200).json({ message: 'Task succesfully updated' });
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   getAll,
   create,
+  update,
 };

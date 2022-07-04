@@ -1,4 +1,5 @@
 const { Task } = require('../models');
+const { getCustomError } = require('../helpers');
 
 const getAll = async (orderBy, direction) => {
   const orderDirection = direction || 'ASC';
@@ -10,6 +11,17 @@ const getAll = async (orderBy, direction) => {
   return tasks;
 };
 
+const getById = async (taskId) => {
+  const foundTask = await Task.findByPk(taskId);
+
+  if (!foundTask) {
+    const customError = getCustomError('Task not found', 404);
+    throw customError;
+  }
+
+  return foundTask;
+};
+
 const create = async (taskData) => {
   const createdAt = new Date();
 
@@ -17,7 +29,16 @@ const create = async (taskData) => {
 
   return newTask;
 };
+
+const update = async (taskId, taskData) => {
+  const foundTask = await getById(taskId);
+
+  await foundTask.update(taskData);
+};
+
 module.exports = {
   getAll,
+  getById,
   create,
+  update,
 };
