@@ -8,5 +8,6 @@ router.route('/')
 
 router.route('/:id')
   .put(Middlewares.validateTask, TaskController.update)
+  .delete(TaskController.remove);
 
 module.exports = router;

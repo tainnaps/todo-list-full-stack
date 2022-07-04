@@ -36,9 +36,16 @@ const update = async (taskId, taskData) => {
   await foundTask.update(taskData);
 };
 
+const remove = async (taskId) => {
+  const foundTask = await getById(taskId);
+
+  await foundTask.destroy();
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  remove,
 };

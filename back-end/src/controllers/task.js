@@ -36,8 +36,22 @@ const update = async (req, res, next) => {
     next(error);
   }
 };
+
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    await TaskService.remove(id);
+
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   create,
   update,
+  remove,
 };
