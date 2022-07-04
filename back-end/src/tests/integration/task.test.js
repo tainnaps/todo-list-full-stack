@@ -193,4 +193,58 @@ describe('tasks route', () => {
       });
     });
   });
+
+  describe('when making a DELETE request to /tasks/:id', () => {
+    describe('and finding the task to delete', () => {
+      const existingTaskId = 5;
+  
+      before(async () => {
+        sinon.stub(Task, 'findByPk').resolves(FIFTH_TASK);
+        sinon.stub(Task, 'destroy').resolves();
+  
+        response = await chai.request(app)
+          .delete(`/tasks/${existingTaskId}`);
+      });
+  
+      after(() => {
+        Task.findByPk.restore();
+        Task.destroy.restore();
+      });
+
+      it('should return status 204', async () => {
+        expect(response).to.have.status(204);
+      });
+
+      it('should return an empty body response', async () => {
+        expect(response.body).to.be.empty;
+      });
+    });
+
+    describe('and not finding the task to delete', () => {
+      const notExistingTaskId = 100;
+  
+      before(async () => {
+        sinon.stub(Task, 'findByPk').resolves(null);
+  
+        response = await chai.request(app)
+          .delete(`/tasks/${notExistingTaskId}`);
+      });
+  
+      after(() => {
+        Task.findByPk.restore();
+      });
+
+      it('should return status 404', async () => {
+        expect(response).to.have.status(404);
+      });
+
+      it('should return a json response', async () => {
+        expect(response).to.be.json;
+      });
+
+      it('should return an object with the message "Task not found"', async () => {
+        expect(response.body).to.have.own.property('message', 'Task not found');
+      });
+    });
+  });
 });
