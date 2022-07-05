@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha src/tests/*/*.test.js",
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "coverage": "nyc npm run test"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "coverage": "nyc npm run test",
+    "lint": "eslint src"
   },
   "keywords": [],
   "author": "",
