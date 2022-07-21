@@ -1,7 +1,7 @@
 const handleError = require('./error');
-const validateTask = require('./task');
+const taskValidations = require('./task');
 
 module.exports = {
   handleError,
-  validateTask,
+  ...taskValidations,
 };
