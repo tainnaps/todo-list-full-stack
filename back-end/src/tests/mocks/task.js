@@ -1,14 +1,14 @@
 const UNORDERED_TASKS = [
   {
     id: 1,
-    name: 'Tarefa 1',
-    status: 'pendente',
+    name: 'First task',
+    status: 'Pending',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
   {
     id: 2,
-    name: 'Minha tarefa 2',
-    status: 'pronto',
+    name: 'Second task',
+    status: 'Done',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
 ];
@@ -16,14 +16,14 @@ const UNORDERED_TASKS = [
 const ORDERED_TASKS_BY_NAME_ASC = [
   {
     id: 2,
-    name: 'Minha tarefa 2',
-    status: 'pronto',
+    name: 'Second task',
+    status: 'Done',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
   {
     id: 1,
-    name: 'Tarefa 1',
-    status: 'pendente',
+    name: 'First task',
+    status: 'Pending',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
 ];
@@ -31,14 +31,14 @@ const ORDERED_TASKS_BY_NAME_ASC = [
 const ORDERED_TASKS_BY_STATUS_ASC = [
   {
     id: 1,
-    name: 'Tarefa 1',
-    status: 'pendente',
+    name: 'First task',
+    status: 'Pending',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
   {
     id: 2,
-    name: 'Minha tarefa 2',
-    status: 'pronto',
+    name: 'Second task',
+    status: 'Done',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
 ];
@@ -46,29 +46,29 @@ const ORDERED_TASKS_BY_STATUS_ASC = [
 const ORDERED_TASKS_BY_DATE_DESC = [
   {
     id: 2,
-    name: 'Minha tarefa 2',
-    status: 'pronto',
+    name: 'Second task',
+    status: 'Done',
     createdAt: '2022-07-04T04:09:32.000Z',
   },
   {
     id: 1,
-    name: 'Tarefa 1',
-    status: 'pendente',
+    name: 'First task',
+    status: 'Pending',
     createdAt: '2022-07-04T02:01:17.000Z',
   },
 ];
 
 const FIFTH_TASK = {
   id: 5,
-  name: 'Minha tarefa 5',
-  status: 'em andamento',
+  name: 'Fifth task',
+  status: 'In progress',
   createdAt: '2022-07-04T04:09:32.000Z',
 };
 
 const UPDATED_FIFTH_TASK = {
   id: 5,
-  name: 'Minha tarefa 5',
-  status: 'pronto',
+  name: 'Fifth task',
+  status: 'Done',
   createdAt: '2022-07-04T04:09:32.000Z',
 };
 

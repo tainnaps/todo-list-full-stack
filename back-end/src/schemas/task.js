@@ -12,7 +12,7 @@ const taskStatusSchema = Joi.object({
     .string()
     .required()
     .empty()
-    .valid('pendente', 'em andamento', 'pronto'),
+    .valid('Pending', 'In progress', 'Done'),
 });
 
 module.exports = {

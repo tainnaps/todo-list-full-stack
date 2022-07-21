@@ -22,7 +22,7 @@ const getById = async (taskId) => {
 
 const create = async (taskName) => {
   const createdAt = new Date();
-  const status = 'pendente';
+  const status = 'Pending';
 
   const newTask = await Task.create({ name: taskName, status, createdAt });
 

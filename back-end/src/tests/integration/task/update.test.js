@@ -46,7 +46,7 @@ describe('Making a PUT request to /tasks/:id', () => {
       });
     });
 
-    describe('sending a status different of "pendente", "pronto" or "em andamento"', () => {
+    describe('sending a status different of "Pending", "Done" or "In progress"', () => {
       before(async () => {
         response = await chai.request(app)
           .put(`/tasks/${existingTaskId}`)
@@ -64,8 +64,8 @@ describe('Making a PUT request to /tasks/:id', () => {
         expect(response).to.be.json;
       });
 
-      it('should return an object with the message "\"status\" must be one of [pendente, em andamento, pronto]"', () => {
-        expect(response.body).to.have.own.property('message', '\"status\" must be one of [pendente, em andamento, pronto]');
+      it('should return an object with the message "\"status\" must be one of [Pending, In progress, Done]"', () => {
+        expect(response.body).to.have.own.property('message', '\"status\" must be one of [Pending, In progress, Done]');
       });
     });
 

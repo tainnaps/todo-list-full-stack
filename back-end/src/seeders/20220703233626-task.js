@@ -5,20 +5,20 @@ module.exports = {
       [
         {
           id: 1,
-          name: 'Ligar para gerente da matriz',
-          status: 'pendente',
+          name: 'Call to the manager',
+          status: 'Pending',
           created_at: new Date(),
         },
         {
           id: 2,
-          name: 'Reunião com o time de Marketing',
-          status: 'pronto',
+          name: 'Meeting with the Marketing team',
+          status: 'Done',
           created_at: new Date(),
         },
         {
           id: 3,
-          name: 'Relatório de desempenho do semestre',
-          status: 'em andamento',
+          name: 'Write performance report of the semester',
+          status: 'In progress',
           created_at: new Date(),
         },
       ],
