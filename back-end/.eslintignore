@@ -1,2 +1,2 @@
-src/tests/*/*.test.js
+src/tests/**/*.test.js
 src/models/index.js
