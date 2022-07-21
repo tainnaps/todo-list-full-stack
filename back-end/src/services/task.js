@@ -22,10 +22,11 @@ const getById = async (taskId) => {
   return foundTask;
 };
 
-const create = async (taskData) => {
+const create = async (taskName) => {
   const createdAt = new Date();
+  const status = 'pendente';
 
-  const newTask = await Task.create({ ...taskData, createdAt });
+  const newTask = await Task.create({ name: taskName, status, createdAt });
 
   return newTask;
 };
