@@ -1,11 +1,9 @@
 const { Task } = require('../models');
 const { getCustomError } = require('../helpers');
 
-const getAll = async (orderBy, direction) => {
-  const orderDirection = direction || 'ASC';
-
+const getAll = async (orderBy, direction = 'ASC') => {
   const tasks = orderBy
-    ? await Task.findAll({ order: [[orderBy, orderDirection]] })
+    ? await Task.findAll({ order: [[orderBy, direction]] })
     : await Task.findAll();
 
   return tasks;
