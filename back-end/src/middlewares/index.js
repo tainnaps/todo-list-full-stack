@@ -1,7 +1,9 @@
-const handleError = require('./error');
-const taskValidations = require('./task');
+const errorMiddleware = require('./error');
+const TaskMiddlewares = require('./task');
+const UserMiddlewares = require('./user');
 
 module.exports = {
-  handleError,
-  ...taskValidations,
+  errorMiddleware,
+  TaskMiddlewares,
+  UserMiddlewares,
 };

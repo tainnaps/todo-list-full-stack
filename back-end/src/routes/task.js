@@ -1,18 +1,18 @@
 const router = require('express').Router();
 const { TaskController } = require('../controllers');
-const Middlewares = require('../middlewares');
+const { TaskMiddlewares } = require('../middlewares');
 
 router.route('/')
   .get(TaskController.getAll)
   .post(
-    Middlewares.validateTaskName,
+    TaskMiddlewares.validateName,
     TaskController.create,
   );
 
 router.route('/:id')
   .put(
-    Middlewares.validateTaskName,
-    Middlewares.validateTaskStatus,
+    TaskMiddlewares.validateName,
+    TaskMiddlewares.validateStatus,
     TaskController.update,
   )
   .delete(TaskController.remove);

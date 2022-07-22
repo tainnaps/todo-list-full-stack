@@ -1,21 +1,19 @@
 const Joi = require('joi');
 
-const taskNameSchema = Joi.object({
-  name: Joi
-    .string()
-    .required()
-    .empty(),
-});
+const name = Joi
+  .string()
+  .required()
+  .empty()
+  .label('name');
 
-const taskStatusSchema = Joi.object({
-  status: Joi
-    .string()
-    .required()
-    .empty()
-    .valid('Pending', 'In progress', 'Done'),
-});
+const status = Joi
+  .string()
+  .required()
+  .empty()
+  .valid('Pending', 'In progress', 'Done')
+  .label('status');
 
 module.exports = {
-  taskNameSchema,
-  taskStatusSchema,
+  name,
+  status,
 };

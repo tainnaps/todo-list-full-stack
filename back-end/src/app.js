@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
-const Middlewares = require('./middlewares');
+const { errorMiddleware } = require('./middlewares');
 
 const app = express();
 
@@ -8,6 +8,6 @@ app.use(express.json());
 
 app.use(routes);
 
-app.use(Middlewares.handleError);
+app.use(errorMiddleware);
 
 module.exports = app;

@@ -1,9 +1,9 @@
-const { taskNameSchema, taskStatusSchema } = require('../schemas');
+const { TaskSchemas } = require('../schemas');
 const { getCustomError } = require('../helpers');
 
-const validateTaskName = (req, _res, next) => {
+const validateName = (req, _res, next) => {
   const { name } = req.body;
-  const { error } = taskNameSchema.validate({ name });
+  const { error } = TaskSchemas.name.validate(name);
 
   if (error) {
     const { message } = error.details[0];
@@ -15,9 +15,9 @@ const validateTaskName = (req, _res, next) => {
   return next();
 };
 
-const validateTaskStatus = (req, _res, next) => {
+const validateStatus = (req, _res, next) => {
   const { status } = req.body;
-  const { error } = taskStatusSchema.validate({ status });
+  const { error } = TaskSchemas.status.validate(status);
 
   if (error) {
     const { message } = error.details[0];
@@ -30,6 +30,6 @@ const validateTaskStatus = (req, _res, next) => {
 };
 
 module.exports = {
-  validateTaskName,
-  validateTaskStatus,
+  validateName,
+  validateStatus,
 };
