@@ -1,5 +1,5 @@
-const taskSchema = require('./task');
+const TaskSchemas = require('./task');
 
 module.exports = {
-  ...taskSchema,
+  TaskSchemas,
 };
