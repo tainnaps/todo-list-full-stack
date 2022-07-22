@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+        field: 'user_id',
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -27,6 +33,13 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: false,
     },
   );
+
+  Task.associate = (models) => {
+    Task.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user',
+    });
+  };
 
   return Task;
 };
