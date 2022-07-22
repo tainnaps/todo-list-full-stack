@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: true,
       updatedAt: false,
+      tableName: 'tasks',
     },
   );
 
