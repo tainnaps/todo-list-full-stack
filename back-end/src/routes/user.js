@@ -9,4 +9,12 @@ router.post(
   UserController.login,
 );
 
+router.post(
+  '/',
+  UserMiddlewares.validateEmail,
+  UserMiddlewares.validatePassword,
+  UserMiddlewares.validateName,
+  UserController.create,
+);
+
 module.exports = router;

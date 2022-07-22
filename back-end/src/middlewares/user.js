@@ -29,7 +29,22 @@ const validatePassword = (req, _res, next) => {
   return next();
 };
 
+const validateName = (req, _res, next) => {
+  const { name } = req.body;
+  const { error } = UserSchemas.name.validate(name);
+
+  if (error) {
+    const { message } = error.details[0];
+    const customError = getCustomError(message, 400);
+
+    return next(customError);
+  }
+
+  return next();
+};
+
 module.exports = {
   validateEmail,
   validatePassword,
+  validateName,
 };

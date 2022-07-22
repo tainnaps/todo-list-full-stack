@@ -14,7 +14,15 @@ const password = Joi
   .empty()
   .label('password');
 
+const name = Joi
+  .string()
+  .min(2)
+  .required()
+  .empty()
+  .label('name');
+
 module.exports = {
   email,
   password,
+  name,
 };
