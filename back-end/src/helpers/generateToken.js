@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
 
-const generateToken = (userId) => {
+const generateToken = (email) => {
   const token = jwt.sign(
-    { payload: { userId } },
+    { payload: { email } },
     JWT_SECRET,
     { expiresIn: '1d' },
   );
