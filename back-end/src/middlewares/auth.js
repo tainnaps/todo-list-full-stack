@@ -1,6 +1,5 @@
 const { UserService } = require('../services');
-const { getCustomError } = require('../helpers');
-const verifyToken = require('../helpers');
+const { getCustomError, verifyToken } = require('../helpers');
 
 const authMiddleware = async (req, _res, next) => {
   try {
