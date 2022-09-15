@@ -1,9 +1,15 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
+const jwt = require('jsonwebtoken');
 const app = require('../../../app');
-const { Task } = require('../../../models');
-const { FIFTH_TASK } = require('../../mocks');
+const { Task, User } = require('../../../models');
+const {
+  FIFTH_TASK,
+  TOKEN,
+  FIRST_USER,
+  TOKEN_PAYLOAD,
+} = require('../../mocks');
 
 const { expect } = chai;
 
@@ -16,15 +22,20 @@ describe('Making a DELETE request to /tasks/:id', () => {
     const existingTaskId = 5;
 
     before(async () => {
-      sinon.stub(Task, 'findByPk').resolves(FIFTH_TASK);
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(Task, 'findOne').resolves(FIFTH_TASK);
       sinon.stub(Task, 'destroy').resolves();
 
       response = await chai.request(app)
-        .delete(`/tasks/${existingTaskId}`);
+        .delete(`/tasks/${existingTaskId}`)
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
-      Task.findByPk.restore();
+      jwt.verify.restore();
+      User.findOne.restore();
+      Task.findOne.restore();
       Task.destroy.restore();
     });
 
@@ -41,14 +52,19 @@ describe('Making a DELETE request to /tasks/:id', () => {
     const notExistingTaskId = 100;
 
     before(async () => {
-      sinon.stub(Task, 'findByPk').resolves(null);
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(Task, 'findOne').resolves(null);
 
       response = await chai.request(app)
-        .delete(`/tasks/${notExistingTaskId}`);
+        .delete(`/tasks/${notExistingTaskId}`)
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
-      Task.findByPk.restore();
+      jwt.verify.restore();
+      User.findOne.restore();
+      Task.findOne.restore();
     });
 
     it('should return status 404', () => {
@@ -68,14 +84,19 @@ describe('Making a DELETE request to /tasks/:id', () => {
     const existingTaskId = 5;
 
     before(async () => {
-      sinon.stub(Task, 'findByPk').rejects();
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(Task, 'findOne').rejects();
 
       response = await chai.request(app)
-        .delete(`/tasks/${existingTaskId}`);
+        .delete(`/tasks/${existingTaskId}`)
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
-      Task.findByPk.restore();
+      jwt.verify.restore();
+      User.findOne.restore();
+      Task.findOne.restore();
     });
 
     it('should return status 500', () => {
