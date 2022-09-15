@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "todo-list-back-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,8 @@
     "start": "node src/server.js",
     "coverage": "nyc npm run test",
     "lint": "eslint src",
-    "db:reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "db:reset": "npm run db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "db:drop": "npx sequelize db:drop"
   },
   "keywords": [],
   "author": "",
