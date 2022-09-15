@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 const errorMiddleware = (err, _req, res, _next) => {
   if (err.code) {
     const { code, message } = err;

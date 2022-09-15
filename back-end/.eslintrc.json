@@ -11,6 +11,8 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "object-curly-newline": "off",
+        "no-unused-vars": "off"
     }
 }
