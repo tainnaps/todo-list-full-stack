@@ -15,7 +15,7 @@ const login = async ({ email, password }) => {
     throw customError;
   }
 
-  const token = generateToken(email);
+  const token = generateToken(user.id);
 
   return {
     token,
@@ -33,7 +33,7 @@ const create = async ({ email, password, name }) => {
 
   const passwordHash = md5(password);
   const newUser = await User.create({ email, password: passwordHash, name });
-  const token = generateToken(email);
+  const token = generateToken(newUser.id);
 
   return {
     token,
@@ -45,7 +45,22 @@ const create = async ({ email, password, name }) => {
   };
 };
 
+const getById = async (id) => {
+  const user = await User.findOne({
+    where: { id },
+    attributes: { exclude: ['password'] },
+  });
+
+  if (!user) {
+    const customError = getCustomError('User not found', 404);
+    throw customError;
+  }
+
+  return user;
+};
+
 module.exports = {
   login,
   create,
+  getById,
 };
