@@ -1,5 +1,5 @@
 # Todo List 📝
-Este é o projeto Fullstack de uma lista de tarefas onde é possível realizar **cadastro e login** de *usuários* bem como **c**riar, **l**er, **a**tualizar e **d**eletar (**CRUD**) suas *tarefas*.
+Este é o projeto Fullstack de uma lista de tarefas onde pessoas usuárias podem realizar **cadastro e login** bem como **c**riar, **l**er, **a**tualizar e **d**eletar (**CRUD**) suas tarefas.
 
 O projeto foi desenvolvido num *monorepo* (um único repositório) contento a implementação do backend e frontend da aplicação.
 
