@@ -19,7 +19,7 @@ Siga com a leitura do `README` para conhecer os detalhes do projeto 🤩.
 ### Containers
 
 ### Backend
-[Documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum)
+- [Documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum)
 
 ### Frontend
 
