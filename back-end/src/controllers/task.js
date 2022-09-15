@@ -3,8 +3,9 @@ const { TaskService } = require('../services');
 const getAll = async (req, res, next) => {
   try {
     const { orderBy, direction } = req.query;
+    const { id: userId } = req.user;
 
-    const tasks = await TaskService.getAll(orderBy, direction);
+    const tasks = await TaskService.getAll({ orderBy, direction, userId });
 
     res.status(200).json(tasks);
   } catch (error) {
@@ -15,8 +16,9 @@ const getAll = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const { name } = req.body;
+    const { id: userId } = req.user;
 
-    const newTask = await TaskService.create(name);
+    const newTask = await TaskService.create({ name, userId });
 
     res.status(201).json(newTask);
   } catch (error) {
@@ -28,8 +30,11 @@ const update = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, status } = req.body;
+    const { id: userId } = req.user;
 
-    await TaskService.update(id, { name, status });
+    await TaskService.update({
+      id, name, status, userId,
+    });
 
     res.status(200).json({ message: 'Task succesfully updated' });
   } catch (error) {
@@ -40,8 +45,9 @@ const update = async (req, res, next) => {
 const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const { id: userId } = req.user;
 
-    await TaskService.remove(id);
+    await TaskService.remove({ id, userId });
 
     res.status(204).end();
   } catch (error) {
