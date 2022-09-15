@@ -1,12 +1,21 @@
-// eslint-disable-next-line no-unused-vars
-module.exports = (err, _req, res, _next) => {
-  const { code, message } = err;
-
-  if (code) {
+const errorMiddleware = (err, _req, res, _next) => {
+  if (err.code) {
+    const { code, message } = err;
     return res.status(code).json({ message });
   }
 
-  console.log(message);
+  if (err.message.includes('jwt')) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  if (err.isJoi) {
+    const [{ message }] = err.details;
+    return res.status(400).json({ message });
+  }
+
+  console.log(err.message);
 
   return res.status(500).json({ message: 'Internal server error' });
 };
+
+module.exports = errorMiddleware;

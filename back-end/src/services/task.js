@@ -1,7 +1,7 @@
 const { Task } = require('../models');
 const { getCustomError } = require('../helpers');
 
-const getAll = async (orderBy, direction = 'ASC') => {
+const getAll = async ({ orderBy, direction = 'ASC' }) => {
   const tasks = orderBy
     ? await Task.findAll({ order: [[orderBy, direction]] })
     : await Task.findAll();
@@ -9,8 +9,8 @@ const getAll = async (orderBy, direction = 'ASC') => {
   return tasks;
 };
 
-const getById = async (taskId) => {
-  const foundTask = await Task.findByPk(taskId);
+const getById = async (id) => {
+  const foundTask = await Task.findByPk(id);
 
   if (!foundTask) {
     const customError = getCustomError('Task not found', 404);
@@ -20,25 +20,25 @@ const getById = async (taskId) => {
   return foundTask;
 };
 
-const create = async (taskName) => {
+const create = async ({ name, userId }) => {
   const createdAt = new Date();
   const status = 'Pending';
 
-  const newTask = await Task.create({ name: taskName, status, createdAt });
+  const newTask = await Task.create({ name, status, createdAt, userId });
 
   return newTask;
 };
 
-const update = async (taskId, taskData) => {
-  await getById(taskId);
+const update = async ({ id, name, status, userId }) => {
+  await getById(id);
 
-  await Task.update(taskData, { where: { id: taskId } });
+  await Task.update({ name, status }, { where: { id, userId } });
 };
 
-const remove = async (taskId) => {
-  await getById(taskId);
+const remove = async ({ id, userId }) => {
+  await getById(id);
 
-  await Task.destroy({ where: { id: taskId } });
+  await Task.destroy({ where: { id, userId } });
 };
 
 module.exports = {
