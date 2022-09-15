@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
 
-const generateToken = (email) => {
+const generateToken = (userId) => {
   const token = jwt.sign(
-    { payload: { email } },
+    { payload: { userId } },
     JWT_SECRET,
-    { expiresIn: '1d' },
+    { expiresIn: '1d', algorithm: 'HS256' },
   );
 
   return token;
