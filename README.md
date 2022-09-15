@@ -6,14 +6,14 @@ O projeto foi desenvolvido num *monorepo* (um único repositório) contento a im
 Siga com a leitura do `README` para conhecer os detalhes do projeto 🤩.
 
 ## Sumário
-- [Entendendo o projeto](https://github.com/tainnaps/todo-list-full-stack/main/README.md#entendendo-o-projeto)
-  - [Containers](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#containers)
-  - [Backend](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#backend)
-  - [Frontend](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#frontend)
-- [Executando o projeto](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#executando-o-projeto)
-- [Executando os testes](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#executando-os-testes)
-  - [Backend](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#backend-1)
-  - [Frontend](https://github.com/tainnaps/todo-list-full-stack/edit/main/README.md#frontend-1)
+- [Entendendo o projeto](https://github.com/tainnaps/todo-list-full-stack#entendendo-o-projeto)
+  - [Containers](https://github.com/tainnaps/todo-list-full-stack#containers)
+  - [Backend](https://github.com/tainnaps/todo-list-full-stack#backend)
+  - [Frontend](https://github.com/tainnaps/todo-list-full-stack#frontend)
+- [Executando o projeto](https://github.com/tainnaps/todo-list-full-stack#executando-o-projeto)
+- [Executando os testes](https://github.com/tainnaps/todo-list-full-stack#executando-os-testes)
+  - [Backend](https://github.com/tainnaps/todo-list-full-stack#backend-1)
+  - [Frontend](https://github.com/tainnaps/todo-list-full-stack#frontend-1)
 
 ## Entendendo o projeto
 ### Containers
