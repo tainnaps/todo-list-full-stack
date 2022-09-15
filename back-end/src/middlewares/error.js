@@ -4,7 +4,7 @@ const errorMiddleware = (err, _req, res, _next) => {
     return res.status(code).json({ message });
   }
 
-  if (err.message.includes('jwt')) {
+  if (err.message.includes('token')) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
