@@ -1,9 +1,16 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
+const jwt = require('jsonwebtoken');
 const app = require('../../../app');
-const { Task } = require('../../../models');
-const { FIFTH_TASK, UPDATED_FIFTH_TASK } = require('../../mocks');
+const { Task, User } = require('../../../models');
+const {
+  TOKEN,
+  FIRST_USER,
+  TOKEN_PAYLOAD,
+  FIFTH_TASK,
+  UPDATED_FIFTH_TASK,
+} = require('../../mocks');
 
 const { expect } = chai;
 
@@ -17,7 +24,9 @@ describe('Making a PUT request to /tasks/:id', () => {
 
     describe('sending valid name and status', () => {
       before(async () => {
-        sinon.stub(Task, 'findByPk').resolves(FIFTH_TASK);
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+        sinon.stub(Task, 'findOne').resolves(FIFTH_TASK);
         sinon.stub(Task, 'update').resolves();
   
         response = await chai.request(app)
@@ -25,11 +34,14 @@ describe('Making a PUT request to /tasks/:id', () => {
           .send({
             name: UPDATED_FIFTH_TASK.name,
             status: UPDATED_FIFTH_TASK.status,
-          });
+          })
+          .set('Authorization', TOKEN);
       });
   
       after(() => {
-        Task.findByPk.restore();
+        jwt.verify.restore();
+        User.findOne.restore();
+        Task.findOne.restore();
         Task.update.restore();
       });
   
@@ -48,12 +60,21 @@ describe('Making a PUT request to /tasks/:id', () => {
 
     describe('sending a status different of "Pending", "Done" or "In progress"', () => {
       before(async () => {
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+
         response = await chai.request(app)
           .put(`/tasks/${existingTaskId}`)
           .send({
             name: FIFTH_TASK.name,
             status: 'invalid status',
-          });
+          })
+          .set('Authorization', TOKEN);
+      });
+
+      after(() => {
+        jwt.verify.restore();
+        User.findOne.restore();
       });
 
       it('should return status 400', () => {
@@ -71,11 +92,20 @@ describe('Making a PUT request to /tasks/:id', () => {
 
     describe('not sending the task new name', () => {
       before(async () => {
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+
         response = await chai.request(app)
           .put(`/tasks/${existingTaskId}`)
           .send({
             status: FIFTH_TASK.status,
-          });
+          })
+          .set('Authorization', TOKEN);
+      });
+
+      after(() => {
+        jwt.verify.restore();
+        User.findOne.restore();
       });
   
       it('should return status 400', () => {
@@ -93,11 +123,20 @@ describe('Making a PUT request to /tasks/:id', () => {
 
     describe('not sending the task new status', () => {
       before(async () => {
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+
         response = await chai.request(app)
           .put(`/tasks/${existingTaskId}`)
           .send({
             name: FIFTH_TASK.name,
-          });
+          })
+          .set('Authorization', TOKEN);
+      });
+
+      after(() => {
+        jwt.verify.restore();
+        User.findOne.restore();
       });
   
       it('should return status 400', () => {
@@ -118,18 +157,23 @@ describe('Making a PUT request to /tasks/:id', () => {
     const notExistingTaskId = 100;
 
     before(async () => {
-      sinon.stub(Task, 'findByPk').resolves(null);
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(Task, 'findOne').resolves(null);
 
       response = await chai.request(app)
         .put(`/tasks/${notExistingTaskId}`)
         .send({
           name: UPDATED_FIFTH_TASK.name,
           status: UPDATED_FIFTH_TASK.status,
-        });
+        })
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
-      Task.findByPk.restore();
+      jwt.verify.restore();
+      User.findOne.restore();
+      Task.findOne.restore();
     });
 
     it('should return status 404', () => {
@@ -149,18 +193,23 @@ describe('Making a PUT request to /tasks/:id', () => {
     const existingTaskId = 5;
 
     before(async () => {
-      sinon.stub(Task, 'findByPk').rejects();
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(Task, 'findOne').rejects();
 
       response = await chai.request(app)
         .put(`/tasks/${existingTaskId}`)
         .send({
           name: UPDATED_FIFTH_TASK.name,
           status: UPDATED_FIFTH_TASK.status,
-        });
+        })
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
-      Task.findByPk.restore();
+      jwt.verify.restore();
+      User.findOne.restore();
+      Task.findOne.restore();
     });
 
     it('should return status 500', () => {
