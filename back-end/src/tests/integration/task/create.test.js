@@ -1,9 +1,15 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
+const jwt = require('jsonwebtoken');
 const app = require('../../../app');
-const { Task } = require('../../../models');
-const { FIFTH_TASK } = require('../../mocks');
+const { Task, User } = require('../../../models');
+const {
+  FIFTH_TASK,
+  TOKEN,
+  FIRST_USER,
+  TOKEN_PAYLOAD,
+} = require('../../mocks');
 
 const { expect } = chai;
 
@@ -15,16 +21,21 @@ describe('Making a POST request to /tasks', () => {
   describe('sending the new task name', () => {
     describe('with valid value', () => {
       before(async () => {
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
         sinon.stub(Task, 'create').resolves(FIFTH_TASK);
   
         response = await chai.request(app)
           .post('/tasks')
           .send({
             name: FIFTH_TASK.name,
-          });
+          })
+          .set('Authorization', TOKEN);
       });
   
       after(() => {
+        jwt.verify.restore();
+        User.findOne.restore();
         Task.create.restore();
       });
 
@@ -43,12 +54,20 @@ describe('Making a POST request to /tasks', () => {
 
     describe('with empty value', () => {
       before(async () => {
+        sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+
         response = await chai.request(app)
           .post('/tasks')
           .send({
             name: '',
-            status: FIFTH_TASK.status,
-          });
+          })
+          .set('Authorization', TOKEN);
+      });
+
+      after(() => {
+        jwt.verify.restore();
+        User.findOne.restore();
       });
 
       it('should return status 400', () => {
@@ -67,9 +86,18 @@ describe('Making a POST request to /tasks', () => {
 
   describe('not sending the new task name', () => {
     before(async () => {
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+
       response = await chai.request(app)
         .post('/tasks')
-        .send({});
+        .send({})
+        .set('Authorization', TOKEN);
+    });
+
+    after(() => {
+      jwt.verify.restore();
+      User.findOne.restore();
     });
 
     it('should return status 400', () => {
@@ -87,17 +115,21 @@ describe('Making a POST request to /tasks', () => {
 
   describe('when an unexpected error happens', () => {
     before(async () => {
+      sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
+      sinon.stub(User, 'findOne').resolves(FIRST_USER);
       sinon.stub(Task, 'create').rejects();
 
       response = await chai.request(app)
         .post('/tasks')
         .send({
           name: FIFTH_TASK.name,
-          status: FIFTH_TASK.status,
-        });
+        })
+        .set('Authorization', TOKEN);
     });
 
     after(() => {
+      jwt.verify.restore();
+      User.findOne.restore();
       Task.create.restore();
     });
 
