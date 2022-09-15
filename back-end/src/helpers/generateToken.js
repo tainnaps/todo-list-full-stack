@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 
 const generateToken = (userId) => {
   const token = jwt.sign(
-    { payload: { userId } },
+    { userId },
     JWT_SECRET,
     { expiresIn: '1d', algorithm: 'HS256' },
   );

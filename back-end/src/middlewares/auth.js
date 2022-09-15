@@ -10,7 +10,7 @@ const authMiddleware = async (req, _res, next) => {
       throw customError;
     }
 
-    const { userId } = verifyToken(token);
+    const userId = verifyToken(token);
     const user = await UserService.getById(userId);
 
     req.user = user;

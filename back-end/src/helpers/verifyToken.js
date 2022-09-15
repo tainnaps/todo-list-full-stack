@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
 const verifyToken = (token) => {
-  const { payload } = jwt.verify(token, JWT_SECRET);
+  const { userId } = jwt.verify(token, JWT_SECRET);
 
-  return payload;
+  return userId;
 };
 
 module.exports = verifyToken;
