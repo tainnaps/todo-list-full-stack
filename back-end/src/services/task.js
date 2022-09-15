@@ -20,25 +20,25 @@ const getById = async (id) => {
   return foundTask;
 };
 
-const create = async (name) => {
+const create = async ({ name, userId }) => {
   const createdAt = new Date();
   const status = 'Pending';
 
-  const newTask = await Task.create({ name, status, createdAt });
+  const newTask = await Task.create({ name, status, createdAt, userId });
 
   return newTask;
 };
 
-const update = async ({ id, name, status }) => {
+const update = async ({ id, name, status, userId }) => {
   await getById(id);
 
-  await Task.update({ name, status }, { where: { id } });
+  await Task.update({ name, status }, { where: { id, userId } });
 };
 
-const remove = async (id) => {
+const remove = async ({ id, userId }) => {
   await getById(id);
 
-  await Task.destroy({ where: { id } });
+  await Task.destroy({ where: { id, userId } });
 };
 
 module.exports = {
