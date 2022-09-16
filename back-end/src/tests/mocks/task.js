@@ -24,11 +24,8 @@ const FIFTH_TASK = {
 };
 
 const UPDATED_FIFTH_TASK = {
-  id: 5,
-  userId: 1,
-  name: 'Fifth task',
+  ...FIFTH_TASK,
   status: 'Done',
-  createdAt: '2022-07-04T04:09:32.000Z',
 };
 
 module.exports = {
