@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha src/tests/**/**/*.test.js",
+    "predev": "npm run db:reset",
     "dev": "nodemon src/server.js",
-    "prestart": "npm run db:reset",
+    "prestart": "npm run db:create",
     "start": "node src/server.js",
     "coverage": "nyc npm run test",
     "lint": "eslint src",
-    "db:reset": "npm run db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
-    "db:drop": "npx sequelize db:drop"
+    "db:reset": "npm run db:drop && npm run db:create  && npm run db:seed",
+    "db:drop": "npx sequelize-cli db:drop",
+    "db:create": "npx sequelize-cli db:create && npm run db:migrate",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +33,6 @@
     "sinon": "^14.0.0"
   },
   "dependencies": {
-    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
