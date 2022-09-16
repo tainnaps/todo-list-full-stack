@@ -5,6 +5,7 @@ module.exports = {
     database: 'TodoList',
     host: process.env.DB_HOST,
     dialect: 'mysql',
+    logging: false,
   },
   test: {
     username: 'root',
@@ -12,6 +13,7 @@ module.exports = {
     database: 'TodoList',
     host: process.env.DB_HOST,
     dialect: 'mysql',
+    logging: false,
   },
   production: {
     username: 'root',
@@ -19,5 +21,6 @@ module.exports = {
     database: 'TodoList',
     host: process.env.DB_HOST,
     dialect: 'mysql',
+    logging: false,
   },
 };
