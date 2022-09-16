@@ -3,7 +3,7 @@ Este é o projeto Fullstack de uma lista de tarefas onde pessoas usuárias podem
 
 O projeto foi desenvolvido num *monorepo* (um único repositório) contento a implementação do backend e frontend da aplicação.
 
-Siga com a leitura do `README` para conhecer os detalhes do projeto 🤩.
+Siga com a leitura do `README` para conhecer os detalhes do projeto ✨.
 
 ## Sumário
 - [Entendendo o projeto](https://github.com/tainnaps/todo-list-full-stack#entendendo-o-projeto)
