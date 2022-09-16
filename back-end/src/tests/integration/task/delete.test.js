@@ -7,7 +7,7 @@ const { Task, User } = require('../../../models');
 const {
   FIFTH_TASK,
   TOKEN,
-  FIRST_USER,
+  USER_WITHOUT_PASSWORD,
   TOKEN_PAYLOAD,
 } = require('../../mocks');
 
@@ -23,7 +23,7 @@ describe('Making a DELETE request to /tasks/:id', () => {
 
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'findOne').resolves(FIFTH_TASK);
       sinon.stub(Task, 'destroy').resolves();
 
@@ -53,7 +53,7 @@ describe('Making a DELETE request to /tasks/:id', () => {
 
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'findOne').resolves(null);
 
       response = await chai.request(app)
@@ -85,7 +85,7 @@ describe('Making a DELETE request to /tasks/:id', () => {
 
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'findOne').rejects();
 
       response = await chai.request(app)

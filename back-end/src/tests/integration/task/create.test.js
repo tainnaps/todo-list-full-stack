@@ -7,7 +7,7 @@ const { Task, User } = require('../../../models');
 const {
   FIFTH_TASK,
   TOKEN,
-  FIRST_USER,
+  USER_WITHOUT_PASSWORD,
   TOKEN_PAYLOAD,
 } = require('../../mocks');
 
@@ -22,7 +22,7 @@ describe('Making a POST request to /tasks', () => {
     describe('with valid value', () => {
       before(async () => {
         sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+        sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
         sinon.stub(Task, 'create').resolves(FIFTH_TASK);
   
         response = await chai.request(app)
@@ -55,7 +55,7 @@ describe('Making a POST request to /tasks', () => {
     describe('with empty value', () => {
       before(async () => {
         sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-        sinon.stub(User, 'findOne').resolves(FIRST_USER);
+        sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
 
         response = await chai.request(app)
           .post('/tasks')
@@ -87,7 +87,7 @@ describe('Making a POST request to /tasks', () => {
   describe('not sending the new task name', () => {
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
 
       response = await chai.request(app)
         .post('/tasks')
@@ -116,7 +116,7 @@ describe('Making a POST request to /tasks', () => {
   describe('when an unexpected error happens', () => {
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'create').rejects();
 
       response = await chai.request(app)

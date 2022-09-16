@@ -6,7 +6,7 @@ const app = require('../../../app');
 const { Task, User } = require('../../../models');
 const {
   TOKEN,
-  FIRST_USER,
+  USER_WITHOUT_PASSWORD,
   TOKEN_PAYLOAD,
   UNORDERED_TASKS,
 } = require('../../mocks');
@@ -21,7 +21,7 @@ describe('Making a GET request to /tasks', () => {
   describe('when it is a success', () => {
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'findAll').resolves(UNORDERED_TASKS);
 
       response = await chai.request(app)
@@ -51,7 +51,7 @@ describe('Making a GET request to /tasks', () => {
   describe('when an unexpected error happens', () => {
     before(async () => {
       sinon.stub(jwt, 'verify').returns(TOKEN_PAYLOAD);
-      sinon.stub(User, 'findOne').resolves(FIRST_USER);
+      sinon.stub(User, 'findOne').resolves(USER_WITHOUT_PASSWORD);
       sinon.stub(Task, 'findAll').rejects();
 
       response = await chai.request(app)
