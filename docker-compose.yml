@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:5.7
+    container_name: todo-list-db
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+  back-end:
+    build: ./back-end
+    container_name: todo-list-back-end
+    depends_on:
+      - db
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      DB_HOST: db
+    ports:
+      - 3010:${SERVER_PORT}
+    volumes:
+      - ./back-end:/app
+    command: npm run dev
