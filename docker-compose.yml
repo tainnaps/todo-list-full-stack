@@ -13,7 +13,9 @@ services:
 
   back-end:
     build: ./back-end
+    image: todo-list-back-end
     container_name: todo-list-back-end
+    user: node
     depends_on:
       - db
     restart: always
