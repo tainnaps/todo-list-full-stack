@@ -26,8 +26,8 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       DB_HOST: db
-    # ports:
-    #   - 3010:${SERVER_PORT}
+    ports:
+      - 3010:${SERVER_PORT}
     volumes:
       - ./back-end:/app
     command: npm run dev
@@ -42,7 +42,7 @@ services:
     env_file:
       - ./.env
     environment:
-      REACT_APP_BACKEND_HOST: back-end
+      REACT_APP_BACKEND_HOST: ${SERVER_HOST}
       REACT_APP_BACKEND_PORT: ${SERVER_PORT}
     ports:
       - 3000:3000
