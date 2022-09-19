@@ -11,7 +11,7 @@ const login = async ({ email, password }) => {
   });
 
   if (!user) {
-    const customError = getCustomError('User not found', 404);
+    const customError = getCustomError('Invalid email or password', 404);
     throw customError;
   }
 
