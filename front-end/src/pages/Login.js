@@ -16,8 +16,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // eslint-disable-next-line no-unused-vars
-  const [loginResponse, setLoginResponse] = useState({});
+  // const [loginResponse, setLoginResponse] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -39,8 +38,8 @@ function Login() {
       setErrorMessage(data.message);
       setPassword('');
     } else {
-      setLoginResponse(data);
-      navigate('/register');
+      // setLoginResponse(data);
+      navigate('/tasks');
     }
   };
 
@@ -62,6 +61,7 @@ function Login() {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
+        {errorMessage && <Warning>{errorMessage}</Warning>}
         <Button
           type="button"
           disabled={isButtonDisabled}
@@ -70,9 +70,6 @@ function Login() {
           Login
         </Button>
       </Form>
-      {errorMessage && (
-        <Warning>{errorMessage}</Warning>
-      )}
       <Link to="/register">Register here!</Link>
     </PageContainer>
   );
