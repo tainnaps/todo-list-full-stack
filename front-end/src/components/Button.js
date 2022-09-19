@@ -6,22 +6,18 @@ const Button = styled.button`
   font-size: medium;
   border-radius: 4px;
   transition: 0.3s;
-  border: 2px solid #eead2d;
-  background-color: #211b15;
-  color: #eead2d;
+  border: 2px solid #fbca37;
+  background-color: #fbca37;
+  color: #211b15;
 
   &:hover:enabled {
-    border: 2px solid #eead2d;
-    background-color: #eead2d;
-    color: #211b15;
+    border: 2px solid #fabd05;
+    background-color: #fabd05;
   }
 
   &:disabled {
-    background-color: #676162;
-    border: 2px solid #676162;
     opacity: 0.5;
     cursor: not-allowed;
-    color: #d3d3d3;
   }
 `;
 
