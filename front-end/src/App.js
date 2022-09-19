@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import AppContainer from './components/AppContainer';
 import Login from './pages/Login';
 import Register from './pages/Register';
-// import './App.css';
+import Tasks from './pages/Tasks';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </AppContainer>
   );
