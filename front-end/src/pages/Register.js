@@ -10,6 +10,7 @@ import isValidEmail from '../utils/isValidEmail';
 import isValidPassword from '../utils/isValidPassword';
 import isValidName from '../utils/isValidName';
 import request from '../services/request';
+import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
 
 function Register() {
   const navigate = useNavigate();
@@ -46,6 +47,8 @@ function Register() {
       setConfirmationPassword('');
       setPassword('');
     } else {
+      const { token } = data;
+      setItem(LOCAL_STORAGE_KEY, { token });
       // setUserData(data);
       navigate('/tasks');
     }

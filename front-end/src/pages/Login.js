@@ -10,6 +10,7 @@ import Form from '../components/Form';
 import request from '../services/request';
 import isValidEmail from '../utils/isValidEmail';
 import isValidPassword from '../utils/isValidPassword';
+import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
 
 function Login() {
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ function Login() {
       setErrorMessage(data.message);
       setPassword('');
     } else {
+      const { token } = data;
+      setItem(LOCAL_STORAGE_KEY, { token });
       // setLoginResponse(data);
       navigate('/tasks');
     }
