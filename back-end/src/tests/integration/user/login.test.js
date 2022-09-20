@@ -77,8 +77,8 @@ describe('Making a POST request to /users/login', () => {
         expect(response).to.be.json;
       });
   
-      it('should return an object with the message "Invalid email or password"', () => {
-        expect(response.body).to.have.own.property('message', 'Invalid email or password');
+      it('should return an object with the message "Wrong email or password"', () => {
+        expect(response.body).to.have.own.property('message', 'Wrong email or password');
       });
     });
   });
