@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Form from '../components/Form';
-import Input from '../components/Input';
-import PageContainer from '../components/PageContainer';
-import Warning from '../components/Warning';
-import Title from '../components/Title';
-import Button from '../components/Button';
-import isValidEmail from '../utils/isValidEmail';
-import isValidPassword from '../utils/isValidPassword';
-import isValidName from '../utils/isValidName';
-import request from '../services/request';
+import { UserContext } from '../context/User';
+import { isValidEmail, isValidPassword, isValidName } from '../utils/validations';
 import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
+import request from '../services/request';
+import {
+  PageContainer, Warning, Input, Button, Title, Form,
+} from '../components';
 
 function Register() {
   const navigate = useNavigate();
+  const { setUserData } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmationPassword, setConfirmationPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // const [userData, setUserData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -47,9 +43,9 @@ function Register() {
       setConfirmationPassword('');
       setPassword('');
     } else {
-      const { token } = data;
+      const { token, user } = data;
       setItem(LOCAL_STORAGE_KEY, { token });
-      // setUserData(data);
+      setUserData(user);
       navigate('/tasks');
     }
   };

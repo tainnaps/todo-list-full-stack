@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageContainer from '../components/PageContainer';
-import Link from '../components/Link';
-import Warning from '../components/Warning';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import Title from '../components/Title';
-import Form from '../components/Form';
-import request from '../services/request';
-import isValidEmail from '../utils/isValidEmail';
-import isValidPassword from '../utils/isValidPassword';
+import { UserContext } from '../context/User';
+import { isValidEmail, isValidPassword } from '../utils/validations';
 import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
+import request from '../services/request';
+import {
+  PageContainer, Link, Warning, Input, Button, Title, Form,
+} from '../components';
 
 function Login() {
   const navigate = useNavigate();
+  const { setUserData } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // const [loginResponse, setLoginResponse] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -39,9 +35,9 @@ function Login() {
       setErrorMessage(data.message);
       setPassword('');
     } else {
-      const { token } = data;
+      const { token, user } = data;
       setItem(LOCAL_STORAGE_KEY, { token });
-      // setLoginResponse(data);
+      setUserData(user);
       navigate('/tasks');
     }
   };
