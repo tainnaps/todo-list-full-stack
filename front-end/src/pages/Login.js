@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/User';
 import { isValidEmail, isValidPassword } from '../utils/validations';
-import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
+import { LOCAL_STORAGE_KEY, setItem, getItem } from '../services/localStorage';
 import request from '../services/request';
 import {
   PageContainer, Link, Warning, Input, Button, Title, Form,
@@ -15,6 +15,18 @@ function Login() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const checkToken = () => {
+      const { token } = getItem(LOCAL_STORAGE_KEY);
+
+      if (token) {
+        navigate('/tasks');
+      }
+    };
+
+    checkToken();
+  }, []);
 
   useEffect(() => {
     if (isValidPassword(password) && isValidEmail(email)) {
