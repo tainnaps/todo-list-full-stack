@@ -6,14 +6,14 @@ const {
 } = process.env;
 
 const request = async ({
-  method, url, data = {}, auth = {},
+  method, url, data = {}, headers = {},
 }) => {
   try {
     const response = await axios({
       method,
-      baseURL: `http://${hostname || 'localhost'}:${port || 3010}`,
+      baseURL: `http://${hostname}:${port}`,
       url,
-      auth,
+      headers,
       data,
     });
 
