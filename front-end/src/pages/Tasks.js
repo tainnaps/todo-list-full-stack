@@ -41,7 +41,7 @@ function Tasks() {
 
   return (
     <PageContainer>
-      <Title>Tasks</Title>
+      {tasks.length && <TasksTable tasks={tasks} />}
     </PageContainer>
   );
 }
