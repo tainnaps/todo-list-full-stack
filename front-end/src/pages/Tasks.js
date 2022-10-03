@@ -7,7 +7,6 @@ import request from '../services/request';
 
 function Tasks() {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
   const [tasks, setTasks] = useState([]);
 
   const getAllTasks = async (token) => {
@@ -26,7 +25,7 @@ function Tasks() {
   };
 
   useEffect(() => {
-    const authenticate = async () => {
+    const authenticateUser = async () => {
       const { token } = getItem(LOCAL_STORAGE_KEY);
 
       if (!token) {
@@ -36,11 +35,12 @@ function Tasks() {
       }
     };
 
-    authenticate();
+    authenticateUser();
   }, []);
 
   return (
     <PageContainer>
+      <Title>{`Hello, ${getItem(LOCAL_STORAGE_KEY).username}! Welcome to your todo list.`}</Title>
       {tasks.length && <TasksTable tasks={tasks} />}
     </PageContainer>
   );

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/User';
 import { isValidEmail, isValidPassword } from '../utils/validations';
 import { LOCAL_STORAGE_KEY, setItem, getItem } from '../services/localStorage';
 import request from '../services/request';
@@ -10,7 +9,6 @@ import {
 
 function Login() {
   const navigate = useNavigate();
-  const { setUserData } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -48,8 +46,7 @@ function Login() {
       setPassword('');
     } else {
       const { token, user } = data;
-      setItem(LOCAL_STORAGE_KEY, { token });
-      setUserData(user);
+      setItem(LOCAL_STORAGE_KEY, { token, username: user.name });
       navigate('/tasks');
     }
   };
