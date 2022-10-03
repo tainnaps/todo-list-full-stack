@@ -1,12 +1,12 @@
 import React from 'react';
-import { AppContainer } from './components';
+import { BaseStyle } from './styled';
 import AppRoutes from './routes';
 
 function App() {
   return (
-    <AppContainer>
+    <BaseStyle>
       <AppRoutes />
-    </AppContainer>
+    </BaseStyle>
   );
 }
 

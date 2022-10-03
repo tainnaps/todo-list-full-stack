@@ -6,7 +6,7 @@ import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
 import request from '../services/request';
 import {
   PageContainer, Warning, Input, Button, Title, Form,
-} from '../components';
+} from '../styled';
 
 function Register() {
   const navigate = useNavigate();

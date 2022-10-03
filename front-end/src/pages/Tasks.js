@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageContainer, Title } from '../components';
+import { PageContainer, Title } from '../styled';
+import TasksTable from '../components/TasksTable';
 import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage';
 import request from '../services/request';
 
