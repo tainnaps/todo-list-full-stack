@@ -41,7 +41,17 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   padding: 1.5vh 0.7%;
-  width: 25%;
+  width: ${(props) => (props.small ? '15%' : '25%')};
+  border: none;
+  border-bottom: 2px solid #fbca37;
+  background-color: #211b15;
+  color: #cccdcc;
+  font-size: medium;
+`;
+
+export const Select = styled.select`
+  padding: 1.5vh 0.7%;
+  width: ${(props) => (props.small ? '15%' : '25%')};
   border: none;
   border-bottom: 2px solid #fbca37;
   background-color: #211b15;
@@ -94,4 +104,12 @@ export const Title = styled.h1`
 export const Warning = styled.p`
   color: #c03d29;
   font-size: large;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
 `;
