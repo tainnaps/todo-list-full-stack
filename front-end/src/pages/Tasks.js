@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageContainer, Title } from '../styled';
+import { PageContainer, Title, Warning } from '../styled';
 import TasksTable from '../components/TasksTable';
 import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage';
 import request from '../services/request';
+import { TasksContext } from '../context/Tasks';
 
 function Tasks() {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([]);
+  const {
+    tasks,
+    saveAllTasks,
+    errorMessage,
+  } = useContext(TasksContext);
 
   const getAllTasks = async (token) => {
     const { error, data } = await request({
@@ -20,7 +25,7 @@ function Tasks() {
       removeItem(LOCAL_STORAGE_KEY);
       navigate('/');
     } else {
-      setTasks(data);
+      saveAllTasks(data);
     }
   };
 
@@ -40,8 +45,9 @@ function Tasks() {
 
   return (
     <PageContainer>
-      <Title>{`Hello, ${getItem(LOCAL_STORAGE_KEY).username}! Welcome to your todo list.`}</Title>
-      {tasks.length && <TasksTable tasks={tasks} />}
+      <Title>{ `Hello, ${getItem(LOCAL_STORAGE_KEY).username}! Welcome to your todo list.` }</Title>
+      { errorMessage && <Warning>{ errorMessage }</Warning> }
+      { tasks.length && <TasksTable /> }
     </PageContainer>
   );
 }
