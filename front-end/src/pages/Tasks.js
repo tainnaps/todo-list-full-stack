@@ -5,6 +5,7 @@ import TasksTable from '../components/TasksTable';
 import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage';
 import request from '../services/request';
 import { TasksContext } from '../context/Tasks';
+import TasksControl from '../components/TasksControl';
 
 function Tasks() {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function Tasks() {
   return (
     <PageContainer>
       <Title>{ `Hello, ${getItem(LOCAL_STORAGE_KEY).username}! Welcome to your todo list.` }</Title>
+      <TasksControl />
       { errorMessage && <Warning>{ errorMessage }</Warning> }
       { tasks.length && <TasksTable /> }
     </PageContainer>
