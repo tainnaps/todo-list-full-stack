@@ -4,7 +4,7 @@ import { isValidEmail, isValidPassword, isValidName } from '../utils/validations
 import { LOCAL_STORAGE_KEY, setItem } from '../services/localStorage';
 import request from '../services/request';
 import {
-  PageContainer, Warning, Input, Button, Title, Form,
+  PageContainer, Text, Input, Button, Title, Form,
 } from '../styled';
 
 function Register() {
@@ -58,7 +58,11 @@ function Register() {
   };
 
   return (
-    <PageContainer>
+    <PageContainer
+      justify="center"
+      align="center"
+      gap="3"
+    >
       <Title>Join us!</Title>
       <Form>
         <Input
@@ -89,7 +93,7 @@ function Register() {
           value={confirmationPassword}
           onChange={({ target }) => setConfirmationPassword(target.value)}
         />
-        {errorMessage && <Warning>{errorMessage}</Warning>}
+        {errorMessage && <Text warning>{errorMessage}</Text>}
         <Button
           type="button"
           disabled={isButtonDisabled}

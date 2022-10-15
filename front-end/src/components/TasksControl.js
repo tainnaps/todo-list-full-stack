@@ -68,7 +68,12 @@ function TasksControl() {
   };
 
   return (
-    <Container>
+    <Container
+      row
+      justify="center"
+      align="center"
+      gap="3"
+    >
       <Input
         required
         placeholder="Task name"

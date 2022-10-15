@@ -1,14 +1,6 @@
 import { Link as ReactRouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const BaseStyle = styled.main`
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  background-color: #211b15;
-`;
-
 export const Button = styled.button`
   cursor: pointer;
   padding: 1.5vh 1.4%;
@@ -64,13 +56,17 @@ export const Link = styled(ReactRouterLink)`
   font-size: medium;
 `;
 
-export const PageContainer = styled.main`
-  height: 100vh;
+export const Container = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3vh;
+  flex-direction: ${(props) => (props.row ? 'row' : 'column')};
+  justify-content: ${(props) => props.justify};
+  align-items: ${(props) => props.align};
+  gap: ${(props) => (props.gap && props.row ? `${props.gap}%` : `${props.gap}vh`)};
+`;
+
+export const PageContainer = styled(Container)`
+  min-height: 100vh;
 `;
 
 export const TableButton = styled(Button)`
@@ -81,6 +77,7 @@ export const StyledTable = styled.table`
   width: 75%;
   font-size: large;
   border-collapse: collapse;
+  margin-bottom: 12vh;
 
   th, td {
     border-bottom: 1px solid #a0a1a4;
@@ -101,8 +98,8 @@ export const Title = styled.h1`
   color: #fbca37;
 `;
 
-export const Warning = styled.p`
-  color: #c03d29;
+export const Text = styled.p`
+  color: ${(props) => (props.warning ? '#c03d29' : '#211b15')};
   font-size: large;
 `;
 

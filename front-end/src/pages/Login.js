@@ -4,7 +4,7 @@ import { isValidEmail, isValidPassword } from '../utils/validations';
 import { LOCAL_STORAGE_KEY, setItem, getItem } from '../services/localStorage';
 import request from '../services/request';
 import {
-  PageContainer, Link, Warning, Input, Button, Title, Form,
+  PageContainer, Link, Text, Input, Button, Title, Form,
 } from '../styled';
 
 function Login() {
@@ -34,7 +34,7 @@ function Login() {
     }
   }, [email, password]);
 
-  const handleClick = async () => {
+  const login = async () => {
     const { error, data } = await request({
       method: 'post',
       url: '/users/login',
@@ -52,7 +52,11 @@ function Login() {
   };
 
   return (
-    <PageContainer>
+    <PageContainer
+      justify="center"
+      align="center"
+      gap="3"
+    >
       <Title>Todo List</Title>
       <Form>
         <Input
@@ -69,11 +73,11 @@ function Login() {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
-        {errorMessage && <Warning>{errorMessage}</Warning>}
+        {errorMessage && <Text warning>{errorMessage}</Text>}
         <Button
           type="button"
           disabled={isButtonDisabled}
-          onClick={handleClick}
+          onClick={login}
         >
           Login
         </Button>

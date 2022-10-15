@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageContainer, Title, Warning } from '../styled';
+import { PageContainer, Text, Container } from '../styled';
 import TasksTable from '../components/TasksTable';
 import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage';
 import request from '../services/request';
@@ -45,10 +45,19 @@ function Tasks() {
   }, []);
 
   return (
-    <PageContainer>
-      <Title>{ `Hello, ${getItem(LOCAL_STORAGE_KEY).username}! Welcome to your todo list.` }</Title>
+    <PageContainer
+      justify="flex-start"
+      align="center"
+      gap="10"
+    >
+      <Container
+        justify="center"
+        align="center"
+        gap="4"
+      >
       <TasksControl />
-      { errorMessage && <Warning>{ errorMessage }</Warning> }
+        { errorMessage && <Text warning>{ errorMessage }</Text> }
+      </Container>
       { tasks.length && <TasksTable /> }
     </PageContainer>
   );
