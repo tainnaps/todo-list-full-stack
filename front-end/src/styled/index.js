@@ -103,10 +103,12 @@ export const Text = styled.p`
   font-size: large;
 `;
 
-export const Container = styled.div`
+export const StyledHeader = styled.header`
+  background-color: #fbca37;
+  padding: 2vh 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3%;
+`;
+
+export const Image = styled.img`
+  width: 50px;
 `;

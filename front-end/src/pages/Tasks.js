@@ -6,6 +6,7 @@ import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage
 import request from '../services/request';
 import { TasksContext } from '../context/Tasks';
 import TasksControl from '../components/TasksControl';
+import Header from '../components/Header';
 
 function Tasks() {
   const navigate = useNavigate();
@@ -44,18 +45,24 @@ function Tasks() {
     authenticateUser();
   }, []);
 
+  const logout = () => {
+    removeItem(LOCAL_STORAGE_KEY);
+    navigate('/');
+  };
+
   return (
     <PageContainer
       justify="flex-start"
       align="center"
       gap="10"
     >
+      <Header handleLogoutClick={logout} />
       <Container
         justify="center"
         align="center"
         gap="4"
       >
-      <TasksControl />
+        <TasksControl />
         { errorMessage && <Text warning>{ errorMessage }</Text> }
       </Container>
       { tasks.length && <TasksTable /> }
