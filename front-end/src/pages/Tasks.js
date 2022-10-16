@@ -1,12 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContainer, Text, Container } from '../styled';
-import TasksTable from '../components/TasksTable';
 import { LOCAL_STORAGE_KEY, getItem, removeItem } from '../services/localStorage';
 import request from '../services/request';
 import { TasksContext } from '../context/Tasks';
-import TasksControl from '../components/TasksControl';
-import Header from '../components/Header';
+import { Header, TasksControl, TasksTable } from '../components';
 
 function Tasks() {
   const navigate = useNavigate();
