@@ -4,7 +4,7 @@ import TableHead from './TableHead';
 import { StyledTable } from '../styled';
 
 function TasksTable() {
-  const tableHeaders = ['#', 'Task Name', 'Status', 'Created At', 'Edit', 'Delete'];
+  const tableHeaders = ['#', 'Name', 'Status', 'Created At', 'Edit', 'Delete'];
 
   return (
     <StyledTable>
