@@ -57,7 +57,7 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  width: ${(props) => (props.large ? '100%' : 'fit-content')};
   display: flex;
   flex-direction: ${(props) => (props.row ? 'row' : 'column')};
   justify-content: ${(props) => props.justify};
@@ -67,6 +67,7 @@ export const Container = styled.div`
 
 export const PageContainer = styled(Container)`
   min-height: 100vh;
+  width: 100%;
 `;
 
 export const TableButton = styled(Button)`

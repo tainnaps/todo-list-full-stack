@@ -58,6 +58,7 @@ function Tasks() {
     >
       <Header handleLogoutClick={logout} />
       <Container
+        large
         justify="center"
         align="center"
         gap="4"

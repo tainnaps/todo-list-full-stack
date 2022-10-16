@@ -10,6 +10,7 @@ function Header({ handleLogoutClick }) {
     <StyledHeader>
       <Container
         row
+        large
         justify="space-around"
         align="center"
         gap="20"

@@ -70,6 +70,7 @@ function TasksControl() {
   return (
     <Container
       row
+      large
       justify="center"
       align="center"
       gap="3"
