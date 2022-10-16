@@ -5,7 +5,7 @@ import { TasksContext } from '../context/Tasks';
 import { getItem, LOCAL_STORAGE_KEY } from '../services/localStorage';
 import request from '../services/request';
 import {
-  Button, Container, Input, Select,
+  Button, Container, Input, Select, Label,
 } from '../styled';
 
 function TasksControl() {
@@ -73,10 +73,12 @@ function TasksControl() {
       large
       justify="center"
       align="center"
-      gap="3"
+      gap="2"
     >
+      <Label htmlFor="name">Name</Label>
       <Input
         required
+        id="name"
         placeholder="Task name"
         type="text"
         value={taskName}
@@ -84,20 +86,24 @@ function TasksControl() {
         small
       />
       { isEditing && (
-        <Select
-          value={taskStatus}
-          onChange={({ target }) => setTaskStatus(target.value)}
-          small
-        >
-          { possibleStatus.map((status) => (
-            <option
-              key={status}
-              value={status}
-            >
-              { status }
-            </option>
-          )) }
-        </Select>
+        <>
+          <Label htmlFor="status">Status</Label>
+          <Select
+            id="status"
+            value={taskStatus}
+            onChange={({ target }) => setTaskStatus(target.value)}
+            small
+          >
+            { possibleStatus.map((status) => (
+              <option
+                key={status}
+                value={status}
+              >
+                { status }
+              </option>
+            )) }
+          </Select>
+        </>
       ) }
       <Button
         type="button"

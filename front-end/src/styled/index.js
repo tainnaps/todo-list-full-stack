@@ -31,6 +31,12 @@ export const Form = styled.form`
   width: 100%;
 `;
 
+export const Label = styled.label`
+  color: #fbca37;
+  font-size: large;
+  font-weight: bold;
+`;
+
 export const Input = styled.input`
   padding: 1.5vh 0.7%;
   width: ${(props) => (props.small ? '15%' : '25%')};
