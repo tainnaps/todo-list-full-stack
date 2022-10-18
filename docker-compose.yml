@@ -11,10 +11,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 
-  back-end:
+  api:
     build: ./back-end
-    image: todo-list-back-end
-    container_name: todo-list-back-end
+    image: todo-list-api
+    container_name: todo-list-api
     user: node
     depends_on:
       - db
@@ -32,12 +32,12 @@ services:
       - ./back-end:/app
     command: npm run dev
 
-  front-end:
+  ui:
     build: ./front-end
-    image: todo-list-front-end
-    container_name: todo-list-front-end
+    image: todo-list-ui
+    container_name: todo-list-ui
     depends_on:
-      - back-end
+      - api
     restart: always
     env_file:
       - ./.env
