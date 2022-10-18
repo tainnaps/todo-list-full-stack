@@ -1,8 +1,6 @@
 # Todo List 📝
 Este é o projeto Fullstack de uma lista de tarefas onde pessoas usuárias podem realizar **cadastro e login** bem como **c**riar, **l**er, **a**tualizar e **d**eletar (**CRUD**) suas tarefas.
 
-Siga com a leitura do `README` para conhecer os detalhes do projeto ✨.
-
 ## Sumário
 - [Entendendo o projeto](https://github.com/tainnaps/todo-list-full-stack#entendendo-o-projeto)
   - [Containers](https://github.com/tainnaps/todo-list-full-stack#containers)
