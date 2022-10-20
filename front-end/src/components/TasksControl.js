@@ -80,6 +80,7 @@ function TasksControl() {
         required
         id="name"
         placeholder="Task name"
+        autoComplete="off"
         type="text"
         value={taskName}
         onChange={({ target }) => setTaskName(target.value)}
