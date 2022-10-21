@@ -57,7 +57,20 @@ As tabelas do banco, Users e Tasks, têm relacionamento 1:N e possuem os seguint
 - `created_at`: data de criação da tarefa.
 
 #### API
-- [Documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum)
+A API é RESTful (segue as restrições da arquitetura REST) e foi desenvolvida em `Node.js` com a arquitetura MSC (Model, Service, Controller) para separação de responsabilidades.
+
+##### Tecnologias
+As tecnologias utilizadas para construção da API foram:
+
+- `express`: para construir o servidor da API.
+- `joi`: para validar os dados enviados à API.
+- `cors`: para liberar o acesso à API.
+- `jsonwebtoken`: para gerar e validar tokens de acesso usados em endpoints da API.
+- `sequelize`: para mapear as entidades do banco de dados em objetos.
+- `md5`: para gerar o hash das senhas das pessoas usuárias que serão guardados no banco de dados.
+
+##### Documentação
+Para ver os endpoints da API e o formato de requisição para cada um deles, acesse a [documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum).
 
 ### Front-end
 
