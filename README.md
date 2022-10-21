@@ -26,7 +26,35 @@ Ao todo, foram utilizados 3 containers, sendo eles:
 As particularidades e dependências de cada container podem ser vistas no arquivo [docker-compose.yml](https://github.com/tainnaps/todo-list-full-stack/blob/main/docker-compose.yml).
 
 ### Back-end
+O back-end do projeto é formado pelo banco de dados, que armazena os dados das pessoas usuárias e suas tarefas, e pela API, que controla o acesso ao banco de dados a partir de requisições feitas no front-end.
+
 #### Banco de dados
+O banco de dados utilizado é o `MySQL`, um banco relacional. Essa escolha foi feita porque usuários e tarefas, as entidades trabalhadas na aplicação, possuem um relacionamento fundamental entre si.
+
+As tabelas do banco, Users e Tasks, têm relacionamento 1:N e possuem os seguintes atributos:
+
+##### Users
+
+| id | name | email | password |
+| ----------- | ----------- | ----------- | ----------- |
+| integer | string | string | string |
+
+- `id`: identificador único da pessoa usuária.
+- `name`: nome da pessoa usuária.
+- `email`: email único da pessoa usuária.
+- `password`: senha da pessoa usuária.
+
+##### Tasks
+
+| id | name | status | user_id | created_at
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| integer | string | string | integer | date |
+
+- `id`: identificador único da tarefa.
+- `name`: nome da tarefa.
+- `status`: status da tarefa (Pendente, Em progresso ou Pronta).
+- `user_id`: identificador único da pessoa usuária a qual a tarefa pertence.
+- `created_at`: data de criação da tarefa.
 
 #### API
 - [Documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum)
