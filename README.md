@@ -149,3 +149,6 @@ npm test
 
 ### Front-end
 ⚙️ Os testes do front-end estão em execução.
+
+## Próximos passos
+- Adicionar a funcionalidade de filtrar tarefas
