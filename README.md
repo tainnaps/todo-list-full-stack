@@ -96,6 +96,28 @@ Caso a pessoa tente acessar diretamente esta rota sem estar autenticada, ela é 
 
 ## Executando o projeto
 
+### :warning: Pré-requisitos
+Para executar o projeto, é necessário:
+- Ter o [Docker](https://docs.docker.com/get-docker/) e o [Docker Compose](https://docs.docker.com/compose/) instalados na sua máquina.
+- Criar um arquivo `.env` na raiz do projeto, com base no [.env.example](https://github.com/tainnaps/todo-list-full-stack/blob/main/.env.example), definindo os valores de cada variável de ambiente usada.
+
+### ⚙️ Passo-a-passo
+Com os pré-requisitos atendidos, siga os seguintes passos para executar o projeto:
+
+1. Na raiz do projeto, execute o seguinte comando para iniciar os containers da aplicação:
+```
+docker-compose up 
+```
+Caso queira iniciar os containers em segundo plano, use o seguinte comando:
+```
+docker-compose up -d
+```
+
+2. Com os containers inicializados, acesse o seguinte endereço no navegador para ver a aplicação rodando:
+```
+localhost:3000
+```
+
 ## Executando os testes
 ### Backend
 
