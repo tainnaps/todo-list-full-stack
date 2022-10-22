@@ -4,6 +4,8 @@ Este é o projeto Fullstack de uma lista de tarefas onde pessoas usuárias podem
 
 O projeto foi desenvolvido num *monorepo* (um único repositório) contento a implementação do back-end, front-end e dos containers de desenvolvimento da aplicação.
 
+![Funcionamento da aplicação](front-end/images/todo-list.gif)
+
 ## Sumário
 
 - [Containers](https://github.com/tainnaps/todo-list-full-stack#containers)
