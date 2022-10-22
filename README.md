@@ -81,6 +81,7 @@ As tecnologias utilizadas para desenvolver a interface da pessoa usuária foram:
 - `Styled Components`: para estilizar a interface da pessoa usuária.
 
 ### Rotas
+
 #### /
 Rota principal onde a pessoa usuária pode realizar login na aplicação. Caso sejam enviados dados de login (email e senha) inválidos, uma resposta visual será exibida na tela.
 
@@ -94,14 +95,18 @@ Rota onde a pessoa usuária pode ver todas as suas tarefas, além de editá-las,
 
 Caso a pessoa tente acessar diretamente esta rota sem estar autenticada, ela é redirecionada automaticamente para a rota `\`.
 
+## Deploy
+⚙️ O deploy da aplicação será disponibilizado em breve.
+
 ## Executando o projeto
 
-### :warning: Pré-requisitos
-Para executar o projeto, é necessário:
+### Pré-requisitos
+⚠️ Para executar o projeto, é necessário:
 - Ter o [Docker](https://docs.docker.com/get-docker/) e o [Docker Compose](https://docs.docker.com/compose/) instalados na sua máquina.
+- Clonar o este repositório.
 - Criar um arquivo `.env` na raiz do projeto, com base no [.env.example](https://github.com/tainnaps/todo-list-full-stack/blob/main/.env.example), definindo os valores de cada variável de ambiente usada.
 
-### ⚙️ Passo-a-passo
+### Passo a passo
 Com os pré-requisitos atendidos, siga os seguintes passos para executar o projeto:
 
 1. Na raiz do projeto, execute o seguinte comando para iniciar os containers da aplicação:
@@ -119,7 +124,21 @@ localhost:3000
 ```
 
 ## Executando os testes
-### Backend
 
-### Frontend
-Em execução.
+### Back-end
+Foram feitos testes de integração para cada endpoint da API usando `Mocha`, `Chai`, `Chai-http` e `Sinon`, obtendo 98% de cobertura de testes.
+
+Para executar os testes, siga os seguintes passos:
+
+1. Acesse o terminal do container da API com o comando abaixo:
+```
+docker exec -it todo-list-api bash
+```
+
+2. No terminal do container da API, execute o seguinte comando:
+```
+npm test
+```
+
+### Front-end
+⚙️ Os testes do front-end estão em execução.
