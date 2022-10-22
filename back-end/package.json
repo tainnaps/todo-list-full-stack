@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha src/tests/**/**/*.test.js",
+    "test": "mocha tests/**/**/*.test.js",
     "predev": "npm run db:reset",
     "dev": "nodemon src/server.js",
     "prestart": "npm run db:create",

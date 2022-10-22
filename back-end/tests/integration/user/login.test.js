@@ -2,8 +2,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
 const jwt = require('jsonwebtoken');
-const app = require('../../../app');
-const { User } = require('../../../models');
+const app = require('../../../src/app');
+const { User } = require('../../../src/models');
 const {
   TOKEN,
   USER_WITH_PASSWORD,
