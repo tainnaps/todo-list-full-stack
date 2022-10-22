@@ -7,6 +7,7 @@ O projeto foi desenvolvido num *monorepo* (um único repositório) contento a im
 - [Containers](https://github.com/tainnaps/todo-list-full-stack#containers)
 - [Back-end](https://github.com/tainnaps/todo-list-full-stack#backend)
 - [Front-end](https://github.com/tainnaps/todo-list-full-stack#frontend)
+- [Deploy](https://github.com/tainnaps/todo-list-full-stack#deploy)
 - [Executando o projeto](https://github.com/tainnaps/todo-list-full-stack#executando-o-projeto)
 - [Executando os testes](https://github.com/tainnaps/todo-list-full-stack#executando-os-testes)
 
@@ -80,20 +81,26 @@ As tecnologias utilizadas para desenvolver a interface da pessoa usuária foram:
 - `Context API`: para criar o estado global da interface da pessoa usuária.
 - `Styled Components`: para estilizar a interface da pessoa usuária.
 
-### Rotas
+### Páginas
 
-#### /
-Rota principal onde a pessoa usuária pode realizar login na aplicação. Caso sejam enviados dados de login (email e senha) inválidos, uma resposta visual será exibida na tela.
+#### Login
+Página inicial onde a pessoa usuária pode realizar login na aplicação.
 
-Ao acessar esta rota, caso haja um token válido armazenado no local storage, a pessoa é redirecionada automaticamente para a rota `/tasks`.
+Caso sejam enviados dados de login (email e senha) inválidos, uma resposta visual é exibida na tela. Quando o login é feito com sucesso, a pessoa é redirecionada à página das tarefas.
 
-#### /register
-Rota onde a pessoa usuária pode se cadastrar para usar a aplicação. Caso sejam enviados dados de cadastro (email, nome e senha) inválidas, uma resposta visual será exibida na tela.
+Ao acessar esta página, caso haja um token válido armazenado no local storage, a pessoa é redirecionada automaticamente para a página das tarefas.
 
-#### /tasks
-Rota onde a pessoa usuária pode ver todas as suas tarefas, além de editá-las, deletá-las e criar novas. Nesta rota é possível também fazer o logout da aplicação.
+#### Register
+Página onde a pessoa usuária pode se cadastrar para usar a aplicação.
 
-Caso a pessoa tente acessar diretamente esta rota sem estar autenticada, ela é redirecionada automaticamente para a rota `\`.
+Caso sejam enviados dados de cadastro (email, nome e senha) inválidos, uma resposta visual é exibida na tela. Quando o cadastro é feito com sucesso, a pessoa é redirecionada à página das tarefas.
+
+#### Tasks
+Página onde a pessoa usuária pode ver todas as suas tarefas, além de editá-las, deletá-las e criar novas.
+
+Nesta página é possível também fazer o logout da aplicação, redirecionando a pessoa para a página de login logo em seguida.
+
+Caso a pessoa tente acessar diretamente esta página sem estar autenticada, ela é redirecionada automaticamente para a página de login.
 
 ## Deploy
 ⚙️ O deploy da aplicação será disponibilizado em breve.
