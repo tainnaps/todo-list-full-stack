@@ -5,12 +5,10 @@ O projeto foi desenvolvido num *monorepo* (um único repositório) contento a im
 
 ## Sumário
 - [Containers](https://github.com/tainnaps/todo-list-full-stack#containers)
-- [Backend](https://github.com/tainnaps/todo-list-full-stack#backend)
-- [Frontend](https://github.com/tainnaps/todo-list-full-stack#frontend)
+- [Back-end](https://github.com/tainnaps/todo-list-full-stack#backend)
+- [Front-end](https://github.com/tainnaps/todo-list-full-stack#frontend)
 - [Executando o projeto](https://github.com/tainnaps/todo-list-full-stack#executando-o-projeto)
 - [Executando os testes](https://github.com/tainnaps/todo-list-full-stack#executando-os-testes)
-  - [Backend](https://github.com/tainnaps/todo-list-full-stack#backend-1)
-  - [Frontend](https://github.com/tainnaps/todo-list-full-stack#frontend-1)
 
 ## Containers
 O projeto utiliza Docker Compose para orquestrar múltiplos containers de desenvolvimento.
@@ -58,19 +56,43 @@ As tabelas do banco, Users e Tasks, têm relacionamento 1:N e possuem os seguint
 A API é RESTful (segue as restrições da arquitetura REST) e foi desenvolvida em `Node.js` com a arquitetura MSC (Model, Service, Controller) para separação de responsabilidades.
 
 #### Tecnologias
-As tecnologias utilizadas para construção da API foram:
+As tecnologias utilizadas para desenvolver a API foram:
 
-- `express`: para construir o servidor da API.
-- `joi`: para validar os dados enviados à API.
-- `cors`: para liberar o acesso à API.
-- `jsonwebtoken`: para gerar e validar tokens de acesso usados em endpoints da API.
-- `sequelize`: para mapear as entidades do banco de dados em objetos.
-- `md5`: para gerar o hash das senhas das pessoas usuárias que serão guardados no banco de dados.
+- `Express`: para construir o servidor da API.
+- `Joi`: para validar os dados enviados à API.
+- `Cors`: para liberar o acesso à API.
+- `Json Web Token`: para gerar e validar tokens de acesso usados em endpoints da API.
+- `Sequelize`: para mapear as entidades do banco de dados em objetos.
+- `Md5`: para gerar o hash das senhas das pessoas usuárias que serão guardados no banco de dados.
 
 #### Documentação
 Para ver os endpoints da API e o formato de requisição para cada um deles, acesse a [documentação da API](https://documenter.getpostman.com/view/20099081/2s7YfGDcum).
 
 ## Front-end
+O front-end do projeto é formado pela interface da pessoa usuária. Essa interface é uma SPA (Single Page Application) e permite que a pessoa interaja com a aplicação para realizar cadastro ou login e gerenciar suas tarefas.
+
+### Tecnologias
+As tecnologias utilizadas para desenvolver a interface da pessoa usuária foram:
+
+- `React`: para construir a interface da pessoa usuária.
+- `Axios`: para fazer requisições à API.
+- `Local Storage`: para armazenar o token de acesso e nome da pessoa usuária.
+- `Context API`: para criar o estado global da interface da pessoa usuária.
+- `Styled Components`: para estilizar a interface da pessoa usuária.
+
+### Rotas
+#### /
+Rota principal onde a pessoa usuária pode realizar login na aplicação. Caso sejam enviados dados de login (email e senha) inválidos, uma resposta visual será exibida na tela.
+
+Ao acessar esta rota, caso haja um token válido armazenado no local storage, a pessoa é redirecionada automaticamente para a rota `/tasks`.
+
+#### /register
+Rota onde a pessoa usuária pode se cadastrar para usar a aplicação. Caso sejam enviados dados de cadastro (email, nome e senha) inválidas, uma resposta visual será exibida na tela.
+
+#### /tasks
+Rota onde a pessoa usuária pode ver todas as suas tarefas, além de editá-las, deletá-las e criar novas. Nesta rota é possível também fazer o logout da aplicação.
+
+Caso a pessoa tente acessar diretamente esta rota sem estar autenticada, ela é redirecionada automaticamente para a rota `\`.
 
 ## Executando o projeto
 
@@ -78,3 +100,4 @@ Para ver os endpoints da API e o formato de requisição para cada um deles, ace
 ### Backend
 
 ### Frontend
+Em execução.
